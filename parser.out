@@ -1,0 +1,73 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> SET NAME NUMBER
+Rule 2     statement -> PRINT NAME
+
+Terminals, with rules where they appear
+
+NAME                 : 1 2
+NUMBER               : 1
+PRINT                : 2
+SET                  : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . SET NAME NUMBER
+    (2) statement -> . PRINT NAME
+
+    SET             shift and go to state 2
+    PRINT           shift and go to state 3
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> SET . NAME NUMBER
+
+    NAME            shift and go to state 4
+
+
+state 3
+
+    (2) statement -> PRINT . NAME
+
+    NAME            shift and go to state 5
+
+
+state 4
+
+    (1) statement -> SET NAME . NUMBER
+
+    NUMBER          shift and go to state 6
+
+
+state 5
+
+    (2) statement -> PRINT NAME .
+
+    $end            reduce using rule 2 (statement -> PRINT NAME .)
+
+
+state 6
+
+    (1) statement -> SET NAME NUMBER .
+
+    $end            reduce using rule 1 (statement -> SET NAME NUMBER .)
+
